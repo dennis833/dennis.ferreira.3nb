@@ -1,0 +1,19 @@
+# Dependências
+target/
+Cargo.lock
+Cargo.toml.orig
+Cargo.lock.orig
+
+# Arquivos de build
+*.rs.bk
+
+# Arquivos de configuração de IDEs
+.vscode/
+.idea/
+
+# Arquivos de cache
+**/*.rs.bk
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
