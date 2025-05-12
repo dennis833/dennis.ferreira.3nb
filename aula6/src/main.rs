@@ -32,7 +32,7 @@ impl Graph {
             return;
         }
         println!("{}", vertex);
-        visited.insert((vertex.to_string()));
+        visited.insert(vertex.to_string());
 
         if let Some(neighbors) = self.adjacency_list.get(vertex) {
             for neighbor in neighbors {
@@ -40,4 +40,48 @@ impl Graph {
             }
         }
     }
+
+    fn bfs(&self, start: &str) {
+        let mut visited = HashSet::new();
+        let mut queue = VecDeque::new();
+
+        queue.push_back(start.to_string());
+        visited.insert(start.to_string());
+
+        println!("BFS");
+
+        while let Some(current) = queue.pop_front() {
+            println!("{}", current);
+
+            if let Some(neighbors) = self.adjacency_list.get(&current) {
+                for neighbor in neighbors {
+                    if !visited.contains(neighbor) {
+                        visited.insert(neighbor.clone());
+                        queue.push_back(neighbor.clone());
+                    }
+                }
+            }
+        }
+    }
+}
+
+fn main () {
+    let mut graph = Graph::new();
+
+
+    graph.add_vertex("A");
+    graph.add_vertex("B");
+    graph.add_vertex("C");
+    graph.add_vertex("D");
+    graph.add_vertex("E");
+
+    graph.add_edge("A", "B");
+    graph.add_edge("A", "C");
+    graph.add_edge("B", "D");
+    graph.add_edge("C", "E");
+
+    graph.dfs("A");
+    println!("----");
+    graph.bfs("A")
+
 }
